@@ -5,7 +5,7 @@ Validate emails accordingly to standard RFC822.
 
 The standardRFC822 or "Standard for ARPA Internet Text Messages" is the most general standard that email addresses can follow. Thus, it allows many more possible addresses than other standards. It is a loose check, compared to others.
 
-Other validators don't allow email addresses that are valid as per RFC822, and I consider that unfair, even if they cover 99% of the cases. Some others might even allow non valid email addresses, so I decided to implement my own, despite the many many email validators out there. Sorry for that.
+Other validators don't allow email addresses that are valid as per RFC822, and I consider that unfair, even if they cover 99% of the cases. Some others might even allow non valid email addresses, so I decided to implement my own, despite the many many email validators out there. I apologise for that.
 
 ##Usage
 
@@ -32,6 +32,17 @@ if (email.trimmed.valid(' frodo.baggins@the.shire ')) console.log('Ok');
 // Lowercase and trim it! (Ok)
 if (email.lowercased.trimmed.valid(' Frodo.Baggins@The.Shire ')) console.log('Ok');
 ```
+
+##Methods
+- ####`valid(emailAddress: String): boolean`
+Processes the emailAddress through all the described filters in order of declaration.
+Then, validates the processed emailAddress against RFC822.
+
+- ####`.trimmed`
+A validator that will trim the email before validating it.
+
+- ####`.lowercased`
+A validator that will lowercase the email before validating it.
 
 ##How does it work?
 Magic! Ha ha ha... Not quite.
