@@ -1,5 +1,11 @@
 import {strictlyValid, looselyValid} from './validate';
 
+// Implementation of all the allowed filters. Every filter here will be included in EmailValidator objects
+const validFilters = {
+	trimmed: (email) => (email.trim()),
+	lowercased: (email) => (email.toLowerCase())
+}
+
 // Returns a copy of an EmailValidator object with an added filter in filterName position
 const pushFilter = (obj, filterName) => {
 	var cloneFilters = [...obj.filterPipeline];
@@ -7,11 +13,6 @@ const pushFilter = (obj, filterName) => {
 	let clone = new EmailValidator(cloneFilters);
 	return clone;
 };
-
-const validFilters = {
-	trimmed: (email) => (email.trim()),
-	lowercased: (email) => (email.toLowerCase())
-}
 
 class EmailValidator {
 	constructor(filters = []) {
