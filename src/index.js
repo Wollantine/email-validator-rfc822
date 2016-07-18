@@ -1,3 +1,4 @@
+import {strictlyValid, looselyValid} from './validate';
 
 // Returns a copy of an EmailValidator object with an added filter in filterName position
 const pushFilter = (obj, filterName) => {
@@ -28,12 +29,23 @@ class EmailValidator {
 		}
 	}
 
-	// Runs email through the filterPipeline and then checks if it is RFC822 compliant.
-	valid(email) {
+	// Runs email through the filterPipeline
+	process(email) {
 		for (var filterName of this.filterPipeline) {
 			email = validFilters[filterName](email);
 		}
-		return email == 'frodo.baggins@the.shire';
+		return email;
+	}
+
+	// Runs email through the filterPipeline and then checks if it is RFC822 compliant.
+	valid(email) {
+		return strictlyValid(process(email));
+	}
+
+	// Runs email through the filterPipeline and then checks if it is valid in terms of most usual email addresses
+	// (non RFC822 compliant)
+	looselyValid(email) {
+		return looselyValid(process(email));
 	}
 
 }
