@@ -37,8 +37,8 @@ exports.strictlyValid = (email) => {
 	Non-strict validation
 	Expression to test for usual email addresses (not RFC822 compliant)
  */
-const nonStrictPattern = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+const W3C_HTML5_email_field_regex = /^[a-zA-Z0-9\.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 exports.looselyValid = (email) => {
-	return nonStrictPattern.test(email);
+	return W3C_HTML5_email_field_regex.test(email);
 }
